@@ -4,7 +4,7 @@
 #
 #  id             :integer          not null, primary key
 #  score          :integer
-#  input_time     :time
+#  input_time     :string
 #  correct        :integer
 #  miss           :integer
 #  wpm            :float

@@ -2,11 +2,11 @@ class CreateScores < ActiveRecord::Migration[5.1]
   def change
     create_table :scores do |t|
       t.integer :score, comment: 'スコア'
-      t.time :input_time, comment: '入力時間'
+      t.string :input_time, comment: '入力時間'
       t.integer :correct, comment: '入力文字数'
       t.integer :miss, comment: 'ミス入力数'
       t.float :wpm, comment: 'wpm'
-      t.float :accuracy, comment: '正答率'
+      t.float :accuracy, comment: '正確率'
 
       t.belongs_to :competition, comment: '大会'
       t.belongs_to :level, comment: 'レベル'

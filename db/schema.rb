@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229144210) do
+ActiveRecord::Schema.define(version: 20171229173715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,13 +33,22 @@ ActiveRecord::Schema.define(version: 20171229144210) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "score_weak_keys", force: :cascade do |t|
+    t.bigint "score_id", null: false
+    t.bigint "weak_key_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["score_id"], name: "index_score_weak_keys_on_score_id"
+    t.index ["weak_key_id"], name: "index_score_weak_keys_on_weak_key_id"
+  end
+
   create_table "scores", force: :cascade do |t|
     t.integer "score", comment: "スコア"
-    t.time "input_time", comment: "入力時間"
+    t.string "input_time", comment: "入力時間"
     t.integer "correct", comment: "入力文字数"
     t.integer "miss", comment: "ミス入力数"
     t.float "wpm", comment: "wpm"
-    t.float "accuracy", comment: "正答率"
+    t.float "accuracy", comment: "正確率"
     t.bigint "competition_id", comment: "大会"
     t.bigint "level_id", comment: "レベル"
     t.datetime "created_at", null: false
@@ -57,10 +66,8 @@ ActiveRecord::Schema.define(version: 20171229144210) do
 
   create_table "weak_keys", force: :cascade do |t|
     t.string "character"
-    t.bigint "score_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["score_id"], name: "index_weak_keys_on_score_id"
   end
 
 end

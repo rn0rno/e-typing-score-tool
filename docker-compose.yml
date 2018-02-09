@@ -1,13 +1,25 @@
-db:
-  image: postgres
-  expose:
-    - "5432"
-web:
-  build: .
-  command: bundle exec rails s -p 3000 -b '0.0.0.0'
-  volumes:
-    - .:/app
-  ports:
-    - "3000:3000"
-  links:
-    - db
+version: '2'
+
+services:
+  db:
+    image: postgres
+    expose:
+      - "5432"
+    volumes:
+      - pgsql-data:/var/lib/pgsql
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+      # - rails_gem:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    links:
+      - db
+
+volumes:
+  # rails_gem:
+  #   driver: local
+  pgsql-data:
+    driver: local

@@ -16,4 +16,15 @@
 #
 
 class Competition < ApplicationRecord
+  belongs_to :theme
+
+  def self.open
+    today = Time.zone.now
+    where('start_at <= ? AND end_at >= ?', today, today)
+  end
+
+  def self.type(type_id)
+    ids = Theme.where(type: type_id).pluck(:id)
+    where(theme_id: ids)
+  end
 end
