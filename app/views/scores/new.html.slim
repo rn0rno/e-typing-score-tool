@@ -1,3 +1,29 @@
 = form_for(@score_json, url: scores_path) do |f|
   = f.text_area :text, placeholder: '{ score: \'json\' }'
   = f.submit '登録', class: 'btn'
+
+  table
+    thead
+      th
+        | theme
+      th
+        | score
+      th
+        | wpm
+      th
+        | 正解率
+      th
+        | 日時
+    tbody
+      - @scores.each do |score|
+        tr
+          td
+            = score.theme.name
+          td
+            = "#{score.score} (#{score.level.name})"
+          td
+            = score.wpm
+          td
+            = score.accuracy
+          td
+            = score.created_at

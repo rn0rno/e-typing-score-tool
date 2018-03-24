@@ -24,6 +24,7 @@ class Score < ApplicationRecord
   has_many :score_weak_keys, dependent: :destroy
   has_many :weak_keys, through: :score_weak_keys
   belongs_to :competition
+  belongs_to :level
 
   delegate :theme, to: :competition
 end

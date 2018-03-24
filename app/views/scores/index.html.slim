@@ -1,0 +1,21 @@
+table
+  thead
+    th
+      | theme
+    th
+      | score
+    th
+      | wpm
+    th
+      | 正解率
+  tbody
+    - @scores.each do |score|
+      tr
+        td
+          = score.theme.name
+        td
+          = "#{score.score} (#{score.level.name})"
+        td
+          = score.wpm
+        td
+          = score.accuracy

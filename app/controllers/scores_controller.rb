@@ -1,15 +1,21 @@
 class ScoresController < ApplicationController
-  def index; end
+  def index
+    @scores = Score.all
+  end
 
   def new
     @score_json = ScoreJson.new
+    @scores = Score.all
   end
 
   def edit; end
 
   def create
     score = new_score
-    score.save
+
+    if score.save
+      redirect_to new_score_path
+    end
   end
 
   def update; end

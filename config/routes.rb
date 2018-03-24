@@ -1,6 +1,5 @@
 # == Route Map
 #
-# ruby/2.5.0 isn't supported by this pry-doc version
 #     Prefix Verb   URI Pattern                Controller#Action
 #     scores GET    /scores(.:format)          scores#index
 #            POST   /scores(.:format)          scores#create
